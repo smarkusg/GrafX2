@@ -150,7 +150,12 @@ char * Get_program_directory(const char * argv0)
   if (program_dir == NULL)
   {
     GFX2_Log(GFX2_WARNING, "Failed to detect program directory, using current directory\n");
+//markus lol fixme !!!
+#ifdef __AMIGAOS4__
+    program_dir = strdup("PROGDIR:");
+#else
     program_dir = strdup("." PATH_SEPARATOR);
+#endif
   }
   return program_dir;
 }

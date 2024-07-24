@@ -51,6 +51,13 @@
 /// declare global variables in main.c
 #define GLOBAL_VARIABLES
 
+//markus
+#ifdef __AMIGAOS4__
+#define AMIGA_VERSION_SIGN "GrafX2 git (23.08.2024)"
+static const char *__attribute__((used)) stackcookie = "$STACK: 500000";
+static const char *__attribute__((used)) version_tag = "$VER:" AMIGA_VERSION_SIGN ;
+#endif
+
 // time.h defines timeval which conflicts with the one in amiga SDK
 #ifdef __amigaos__
   #include <devices/timer.h>
@@ -774,7 +781,7 @@ int Init_program(int argc,char * argv[])
 #if defined(USE_SDL)
   SDL_EnableKeyRepeat(250, 32);
   SDL_EnableUNICODE(SDL_ENABLE);
-  SDL_WM_SetCaption("GrafX2","GrafX2");
+  SDL_WM_SetCaption(AMIGA_VERSION_SIGN,"GrafX2");
 #endif
   Define_icon();
 

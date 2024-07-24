@@ -1455,8 +1455,13 @@ void Set_all_video_modes(void)
   // Native GP2X resolution
   Set_video_mode( 320,240,0, 1);
   #else
+#ifdef __AMIGAOS4__
+  // Window mode, with default size of 800x600
+  Set_video_mode( 800,600,0, 0);
+#else
   // Window mode, with default size of 640x480
   Set_video_mode( 640,480,0, 0);
+#endif
   #endif
 
   Set_video_mode( 320,200,0, 1);

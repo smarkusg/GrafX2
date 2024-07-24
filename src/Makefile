@@ -160,6 +160,9 @@ else
 #For all other platforms, we can rely on uname
   PLATFORM = $(shell uname)
 
+#markus add cross-compiling !!!!
+  PLATFORM = AmigaOS
+
   ifeq ($(PLATFORM),AmigaOS) # 1
     #AmigaOS (3 or 4) specific
     DELCOMMAND = rm -rf
@@ -167,13 +170,19 @@ else
     RMDIR = rmdir --ignore-fail-on-non-empty
     CP = cp
     BIN = ../bin/grafx2
-    COPT = -Wall -gstabs $(shell sdl-config --cflags) $(TTFCOPT)
-    LOPT = $(shell sdl-config --libs) -lSDL_image -lpng -ljpeg -lz $(TTFLOPT) -lft2
+#markus
+    LUALIB = -llua
+    LUA_COPT= -D__ENABLE_LUA__
+    COPT = -Wall -gstabs $(shell sdl-config --cflags) $(TTFCOPT) $(LUA_COPT)
+    LOPT = $(shell sdl-config --libs) -lSDL_image -lpng -ljpeg -lz $(TTFLOPT) -ltiff -lSDL_ttf $(LUALIB)
     OBJDIR = ../obj/amiga
     ZIP = lha
     ZIPOPT = a
-    NOTTF = 1
-
+#    NOTTF = 1
+#markus add
+    FCLOPT = -lfontconfig
+    COPT += -DUSE_FC
+#end markus 
   else
   ifeq ($(PLATFORM),Darwin) # 2
     #Mac OS X specific
