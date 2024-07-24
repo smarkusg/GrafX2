@@ -53,7 +53,7 @@
 
 //markus
 #ifdef __AMIGAOS4__
-#define AMIGA_VERSION_SIGN "GrafX2 git (23.08.2024)"
+#define AMIGA_VERSION_SIGN "GrafX2 git (23.07.2024)"
 static const char *__attribute__((used)) stackcookie = "$STACK: 500000";
 static const char *__attribute__((used)) version_tag = "$VER:" AMIGA_VERSION_SIGN ;
 #endif
